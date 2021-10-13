@@ -27,6 +27,11 @@ const routes: Routes = [
       {
         path: 'publicacion/:publicacionId',//publicacion/:id
         loadChildren: () => import('../publicacion/publicacion.module').then(m =>m.PublicacionComponentModule)
+      },
+      {
+        path: '',
+        redirectTo: '/tabs/tab1',
+        pathMatch: 'full'
       }
     ]
   },
