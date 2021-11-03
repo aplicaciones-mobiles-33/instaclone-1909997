@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
 import { Location } from '@angular/common';
 
+
 import { HttpClient } from '@angular/common/http';
+import { FirebaseDbService } from '../firebase-db.service';
+import { PublicacionComponentModule } from './publicacion.module';
 //import * as data from '../../assets/feed.json';
 
 @Component({
@@ -24,37 +26,43 @@ export class PublicacionComponent implements OnInit {
  volver(): void {
    this._location.back();
  }
- constructor(private RutaActiva: ActivatedRoute, private _location : Location){}
+ constructor(private RutaActiva: ActivatedRoute, private _location : Location, private db:FirebaseDbService){}
 
+ publicacion: any;
+ descripcionPost: String;
+ usuario: String;
+ urlImagen: String;
 
-  /*get filtrarPublicacion(): number {
-    return this._filtrarPublicacion;
-  }
-  set filtrarPublicacion(valor: number) {
-    console.log(valor);
-    this._filtrarPublicacion = valor;
-    this.detallePublicacion = this.cargarDetallePublicacion(valor); 
-  }
+ obtenerDetallePublicacion(param): void {
 
-  cargarDetallePublicacion(idPublicacion: number):any {
-     return this.publicaciones.find((publicacion: any) => publicacion.id );
-  }
-  volver(): void {
-    this._location.back();
-  }
+  //agregar FN para obtenerDetalle de publicacion
 
-  constructor(private RutaActiva: ActivatedRoute, private _location : Location) { }
-*/
+  this.db.getPublicacion(param).subscribe(res=> {
+    console.log(res);
+
+    let respuesta = Object.assign(res);
+
+    this.descripcionPost = respuesta.descripcionPost;
+    this.usuario = respuesta.usuario;
+    this.urlImagen = respuesta.urlImagen;
+   
+  })
+  
+}
+
   ngOnInit() {
-    this.RutaActiva.queryParams.subscribe(params => {
+
+    this.publicacionId = this.RutaActiva.snapshot.params.id;
+    console.log(this.RutaActiva.snapshot.params.id);
+    this.obtenerDetallePublicacion(this.publicacionId);
+
+    /*this.RutaActiva.queryParams.subscribe(params => {
       console.log(params);
       this.publicacionId = params.publicacionId;
       console.log(this.publicacionId);
     }
     )
-
+   */
   }
-
-
 
 }

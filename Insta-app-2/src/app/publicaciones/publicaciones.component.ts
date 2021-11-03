@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicacionRoutingModule } from '../publicacion/publicacion-routing.module';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 //import * as data from '../../assets/feed.json';
-import { dashCaseToCamelCase } from '@angular/compiler/src/util';
+//import { dashCaseToCamelCase } from '@angular/compiler/src/util';
+
+import { FirebaseDbService } from '../firebase-db.service';
 
 
 export interface Publicaciones{
@@ -19,40 +21,20 @@ export interface Publicaciones{
 export class PublicacionesComponent implements OnInit {
 
   
-  constructor(private http: HttpClient) { }
+  constructor(private db:FirebaseDbService) { }
 
-
-  /*publicacionesArreglo: Publicaciones[] = [];
-  //publicaciones: {id: number, usuario: String, imagenPost: String, avatarUsuario: string,  descripcionPost: String}[] = publicaciones;
-   datos =  data;
-   datosUsuario: any = this.datos.usuario;
-   publicaciones: any = this.datos.publicaciones;
-   _filtrarPublicaciones: string = this.datosUsuario.nombre; //filtro de publicaciones en el perfil*/
-   publicacionesPorUsuario = [];
-
-   /*/get filtrarPublicaciones(): string {
-     return this._filtrarPublicaciones;
-   }
-   set filtrarPublicaciones(valor: string) {
-     console.log(valor);
-     this._filtrarPublicaciones = valor;
-     this.publicacionesPorUsuario = this.filtroPublicaciones(valor);
-   }
-
-   filtroPublicaciones(nombreUsuario: String): []{
-     nombreUsuario = nombreUsuario.toLocaleLowerCase();
-     return this.publicaciones.filter((publicacion: any) => publicacion.usuario.toLocaleLowerCase().includes(nombreUsuario));
-   }*/
+   publicaciones = [];
 
   obtenerPublicaciones(): void {
-    this.http.get('https://instaclone-app-fc3ab-default-rtdb.firebaseio.com/publicaciones.json').subscribe (publicacionesRespuesta => {
-      console.log(publicacionesRespuesta);
-    })
+    this.db.getPublicaciones().subscribe(
+      res => {
+        console.log(res);
+        this.publicaciones = res;
+      }
+    )
   }
 
   ngOnInit() {
     this.obtenerPublicaciones();
   }
-
-
 }

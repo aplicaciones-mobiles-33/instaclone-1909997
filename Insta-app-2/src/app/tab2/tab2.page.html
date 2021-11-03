@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Crear Publicacion
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,27 +9,40 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Crear Publicacion</ion-title>
     </ion-toolbar>
   </ion-header>
 
+<form>
   <ion-grid>
     <ion-row>
       <ion-col>
         <ion-label>Caption de Foto</ion-label>
-        {{descripcionPublicacion}}
       </ion-col>
       <ion-col>
-        <ion-input placeholder="caption de foto" type="text" [(ngModel)]="datosPublicacion.usuario"></ion-input>
+        <ion-input type="text" placeholder="Escribe un pie de foto..." [(ngModel)]="datosPublicacion.descripcion" name="descripcion"></ion-input>
+  
+        {{datosPublicacion.descripcion}}
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-label>usuario: {{usuarioPublicacion}}</ion-label>
+        <ion-label>usuario: </ion-label>
       </ion-col>
       <ion-col>
-        <ion-input placeholder="luzdeleon" type="text" [(ngModel)]="datosPublicacion.caption" 
-        ></ion-input>
+        <ion-input placeholder="luzdeleon" type="text" [(ngModel)]="datosPublicacion.usuario" name="usuario"></ion-input>
+        {{datosPublicacion.usuario}}
+      </ion-col>
+
+      
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-label>archivo: {{archivo}}</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-input placeholder="luzdeleon" type="file" (change)="onChange($event)" name="foto"></ion-input>
       </ion-col>
     </ion-row>
 
@@ -38,6 +51,7 @@
       <ion-button class="col-12-btn" (click)="crearPublicacion(datosPublicacion)">Crear Publicacion</ion-button>
      </ion-col>
    </ion-row>
+   
     <!--
       <ion-row>
       <ion-col>
@@ -51,5 +65,6 @@
     </ion-row>
     -->
   </ion-grid>
+</form>
 
 </ion-content>

@@ -6,13 +6,14 @@
   </ion-toolbar>
 </ion-header>
 
-
-<ion-card>
+<ion-content>
+  <ion-card>
   <ion-card-header>
     <ion-grid>
       <ion-row>
         <ion-column size="2">
-          <img src="{{detallePublicacion.avatarUsuario}}" alt="" height="20px">
+          {{usuario}}
+          <!-- <img src="{{detallePublicacion.avatarUsuario}}" alt="" height="20px"> -->
         </ion-column>
         <ion-column size="9">
         
@@ -24,7 +25,8 @@
     </ion-grid>
   </ion-card-header>
   <ion-card-content>
-    <p></p>
-    <img src="{{detallePublicacion.imagenPost}}" alt=""> 
+    <p>{{descripcionPost}}</p>
+    <img src="{{urlImagen}}" alt="">
   </ion-card-content>
 </ion-card>
+</ion-content>
