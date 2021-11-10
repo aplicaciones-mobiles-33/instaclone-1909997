@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 
 import { FirebaseDbService } from '../firebase-db.service';
-import { ThrowStmt } from '@angular/compiler';
 import { SubirFotoService } from '../subir-foto.service';
+
+import { FotoSerivceService } from '../foto-serivce.service';
 
 @Component({
   selector: 'app-tab2',
@@ -12,7 +13,9 @@ import { SubirFotoService } from '../subir-foto.service';
 })
 export class Tab2Page {
 
-  constructor(private db: FirebaseDbService, private subirFotoService: SubirFotoService) {}
+  constructor(private db: FirebaseDbService, 
+    private subirFotoService: SubirFotoService,
+    public photoService: FotoSerivceService) {}
 
   descripcionFoto: String;
   usuario: String ;
@@ -38,6 +41,10 @@ export class Tab2Page {
      this.urlFoto = event.target.files[0];
      this.subirFotoService.subirFoto('urlFotoTest', this.urlFoto);
  
+  }
+
+  agregarFotoAGaleria(){
+    this.photoService.agregarFoto();
   }
 
   ngOnInit() {

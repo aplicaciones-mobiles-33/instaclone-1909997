@@ -14,9 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
-//Servicio
-import { FirebaseDbService } from './firebase-db.service';
+//Camara/Arcivos/etc
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [PerfilComponent, AppComponent],
@@ -27,7 +28,10 @@ import { FirebaseDbService } from './firebase-db.service';
     IonicModule.forRoot(),
     AppRoutingModule, 
     AngularFireModule.initializeApp(environment.firebaseConfig), 
-    AngularFireStorageModule],
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    IonicStorageModule.forRoot()
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
