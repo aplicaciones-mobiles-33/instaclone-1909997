@@ -7,9 +7,9 @@ import { FeedComponent } from './feed.component';
 import { RouterModule } from '@angular/router';
 import { PublicacionComponent } from '../publicacion/publicacion.component';
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule,  RouterModule ],
-  declarations: [FeedComponent],
-  exports: [FeedComponent]
+  imports: [ CommonModule, FormsModule, IonicModule,  RouterModule],
+  declarations: [ FeedComponent ],
+  exports: [ FeedComponent ]
 })
 
 export class FeedComponentModule {

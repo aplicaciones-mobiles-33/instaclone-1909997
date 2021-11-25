@@ -26,7 +26,9 @@ export class PublicacionComponent implements OnInit {
  volver(): void {
    this._location.back();
  }
- constructor(private RutaActiva: ActivatedRoute, private _location : Location, private db:FirebaseDbService){}
+ constructor(private RutaActiva: ActivatedRoute, 
+  private _location : Location, 
+  private db:FirebaseDbService){}
 
  publicacion: any;
  descripcionPost: String;

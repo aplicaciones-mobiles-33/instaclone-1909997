@@ -20,7 +20,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
-  declarations: [PerfilComponent, AppComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     HttpClientModule,

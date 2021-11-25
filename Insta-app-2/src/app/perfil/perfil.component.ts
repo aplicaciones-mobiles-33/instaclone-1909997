@@ -60,7 +60,7 @@ export class PerfilComponent implements OnInit {
       let perfilUsuario = Object.assign(res);
 
       this.bio = perfilUsuario.bio;
-      this.nombre = perfilUsuario.nombre;
+      this.nombre = perfilUsuario.nombre.usuario;
       this.seguidores = perfilUsuario.seguidores;
       this.siguiendo = perfilUsuario.siguiendo;
     })
@@ -82,7 +82,7 @@ export class PerfilComponent implements OnInit {
 
     //this.obtenerPublicaciones();
 
-    //this.obtenerPublicacionesUsuario();
+    this.obtenerPublicacionesUsuario();
   }
 
 }
